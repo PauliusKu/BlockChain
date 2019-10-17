@@ -4,11 +4,9 @@
 
 #include "User.h"
 
-User::User() {
-    prName = "fcbfcb";
-    prPublicKey = "dsafffdsaf";
-    prBalance = 100;
-}
+#include <utility>
+
+User::User() = default;
 
 User::User(std::string &pName, std::string &pPublicKey, long int pBalance) {
     prName = pName;
@@ -17,8 +15,8 @@ User::User(std::string &pName, std::string &pPublicKey, long int pBalance) {
 }
 
 User::User(std::string pName, std::string pPublicKey, long int pBalance) {
-    prName = pName;
-    prPublicKey = pPublicKey;
+    prName = std::move(pName);
+    prPublicKey = std::move(pPublicKey);
     prBalance = pBalance;
 }
 
@@ -34,4 +32,12 @@ std::string User::GetAllInfo() {
 
 void User::UpdateBalance(long int &pBalance) {
     prBalance = pBalance;
+}
+
+std::string User::GetName(){
+    return prName;
+}
+
+long int User::GetBalance() {
+    return prBalance;
 }

@@ -13,6 +13,8 @@ public:
     User(std::string& pName, std::string& pPublicKey, long int pBalance);
     User(std::string pName, std::string pPublicKey, long int pBalance);
     void GetAllInfo(std::string& pName, std::string& pPublicKey, long int& pBalance);
+    std::string GetName();
+    long int GetBalance();
     std::string GetAllInfo();
     void UpdateBalance(long int& pBalance);
 
@@ -23,4 +25,4 @@ private:
 };
 
 
-#endif //BLOCKCHAIN_USER_H
+#endif //BLOCKCH{}AIN_USER_H

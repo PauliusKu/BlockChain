@@ -30,7 +30,7 @@ private:
         int prMinBalance;
     };
 
-    Params params;
+    Params params{};
     std::vector<User> users;
 
 };

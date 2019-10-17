@@ -25,15 +25,6 @@ void UserGen::GenAllRandom() {
 
         users.push_back(user);
     }
-//    std::cout << params.prNumOfClientsToGen << std::endl;
-//    for (unsigned long int i = 0; i < params.prNumOfClientsToGen; i++){
-//        std::cout << i << std::endl;
-////        User user(random.RandomString(params.prMinNameLength, params.prMaxNameLength),
-////                  random.RandomString(params.prPublicKeyLength),
-////                  random.RandomNum(params.prMaxBalance, params.prMinBalance));
-//        std::cout << params.prNumOfClientsToGen << std::endl;
-//        users.push_back(User());
-//    }
 }
 
 std::vector<User> UserGen::GetUsers() {
