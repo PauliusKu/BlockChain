@@ -9,7 +9,7 @@
 
 class Context {
 public:
-    inline std::chrono::milliseconds millisecondsGetTimestamp(){
+    static inline std::chrono::milliseconds millisecondsGetTimestamp(){
         return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
     }
 };
