@@ -10,12 +10,16 @@
 #include "Trx.h"
 #include "../user/User.h"
 #include "../core/Random.h"
+#include "../core/Context.h"
 
 class TrxGen {
 public:
     TrxGen(std::vector<User> &pUserList);
+
     void GenerateManyTrxRand(unsigned int pNumToGen);
+
     std::vector<Trx> GetTrxList();
+
 private:
     std::vector<Trx> trxList{};
     std::vector<User> userList{};
@@ -23,9 +27,13 @@ private:
     unsigned long prPrevTrxNum{};
 
     User GetRandUser();
+
     Trx GenerateOneTrxRand();
+
     void FillTwoUsersDiff(User &user1, User &user2);
+
     long int GetRandAmtForUser(User &pUser);
+
     unsigned long GetNextTrxNum();
 };
 

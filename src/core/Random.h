@@ -12,13 +12,20 @@
 class Random {
 public:
     Random();
+
     double RandomNum(double &a, double &b);
-    int RandomNumConst(const int& a, const int& b);
+
+    int RandomNumConst(const int &a, const int &b);
+
     int RandomNum(int a, int b);
+
     double RandomNum();
+
     char RandomChar();
-    std::string RandomString(const int& length);
-    std::string RandomString(const int& prMinLength, const int& prMaxLength);
+
+    std::string RandomString(const int &length);
+
+    std::string RandomString(const int &prMinLength, const int &prMaxLength);
 
 private:
     static std::mt19937 RandomlySeededEngine();

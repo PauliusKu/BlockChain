@@ -10,18 +10,27 @@
 class User {
 public:
     User();
-    User(std::string& pName, std::string& pPublicKey, long int pBalance);
+
+    User(std::string &pName, std::string &pPublicKey, long int pBalance);
+
     User(std::string pName, std::string pPublicKey, long int pBalance);
-    void GetAllInfo(std::string& pName, std::string& pPublicKey, long int& pBalance);
+
+    void GetAllInfo(std::string &pName, std::string &pPublicKey, long int &pBalance);
+
     std::string GetName();
+
+    std::string GetPublicKey();
+
     long int GetBalance();
+
     std::string GetAllInfo();
-    void UpdateBalance(long int& pBalance);
+
+    void UpdateBalance(long int &pBalance);
 
 private:
     std::string prName;
     std::string prPublicKey;
-    long int prBalance;
+    long int prBalance{};
 };
 
 

@@ -6,11 +6,23 @@
 #define BLOCKCHAIN_CONTEXT_H
 
 #include <chrono>
+#include <string>
+
+const unsigned int VERSION = 1;
 
 class Context {
 public:
-    static inline std::chrono::milliseconds millisecondsGetTimestamp(){
-        return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+    static inline unsigned int GetVersion() {
+        return VERSION;
+    }
+
+    static inline std::chrono::microseconds GetTimestampMicroseconds() {
+        return std::chrono::duration_cast<std::chrono::microseconds>(
+                std::chrono::system_clock::now().time_since_epoch());
+    }
+
+    static inline std::string GetTimestampString() {
+        return std::to_string(GetTimestampMicroseconds().count());
     }
 };
 

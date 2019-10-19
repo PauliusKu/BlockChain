@@ -14,7 +14,7 @@ double Random::RandomNum(double &a, double &b) {
     return distribution(rng);
 }
 
-int Random::RandomNumConst(const int& a, const int& b) {
+int Random::RandomNumConst(const int &a, const int &b) {
     static auto rng = RandomlySeededEngine();
     static std::uniform_int_distribution<int> distribution;
 
@@ -42,16 +42,16 @@ char Random::RandomChar() {
     return RandomNum(65, 90);
 }
 
-std::string Random::RandomString(const int& length){
-    std::string randStr {};
+std::string Random::RandomString(const int &length) {
+    std::string randStr{};
 
-    for(unsigned int i = 0; i < length; i++){
+    for (unsigned int i = 0; i < length; i++) {
         randStr += RandomChar();
     }
     return randStr;
 }
 
-std::string Random::RandomString(const int& prMinLength, const int& prMaxLength){
+std::string Random::RandomString(const int &prMinLength, const int &prMaxLength) {
     return RandomString(RandomNum(prMinLength, prMaxLength));
 }
 

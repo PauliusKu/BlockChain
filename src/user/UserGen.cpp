@@ -10,7 +10,7 @@ void UserGen::SetRulesDflt() {
     params.prNumOfClientsToGen = 1000;
     params.prMinNameLength = 10;
     params.prMaxNameLength = 20;
-    params.prPublicKeyLength = 24;
+    params.prPublicKeyLength = 48;
     params.prMaxBalance = 0;
     params.prMinBalance = 100;
 }

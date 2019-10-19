@@ -10,13 +10,17 @@
 
 class Hash {
 public:
-    static std::string HashString(const std::string& pInp1);
+    static std::string HashString(const std::string &pInp1);
 
 private:
-    static std::vector<std::string> MakeBlocks(const std::string& pInp1);
+    static std::vector<std::string> MakeBlocks(const std::string &pInp1);
+
     static std::string HashFunc(std::string pBlock);
-    static std::string HashFunc96(std::string& pBlock1, std::string& pBlock2);
-    static std::string HashFunc(std::string& pBlock1, std::string& pBlock2);
+
+    static std::string HashFunc192(std::string &pBlock1, std::string &pBlock2);
+
+    static std::string HashFunc(std::string &pBlock1, std::string &pBlock2);
+
     static std::string HexToString(unsigned int hex);
 };
 

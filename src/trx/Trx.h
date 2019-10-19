@@ -6,16 +6,44 @@
 #define BLOCKCHAIN_TRX_H
 
 #include <string>
+#include "../core/Hash.h"
 
 class Trx {
 public:
-    unsigned long trxNum;
-    std::string toUserName;
-    std::string fromUserName;
-    long int trxAmt;
-    std::string PrintAll(){
-        return std::to_string(trxNum) + " " + toUserName + " " + fromUserName + " " + std::to_string(trxAmt);
-    }
+    std::string GetAll();
+
+private:
+    unsigned long prTrxNum;
+    std::string prToUserPublicKey;
+    std::string prFromUserPublicKey;
+    long int prTrxAmt;
+    std::string prTimestamp;
+    std::string prTrxHash;
+
+public:
+    void CalcPrTrxHash();
+
+    const std::string &GetPrTrxHash() const;
+
+    unsigned long GetPrTrxNum() const;
+
+    void SetPrTrxNum(unsigned long prTrxNum);
+
+    const std::string &GetPrToUserPublicKey() const;
+
+    void SetPrToUserPublicKey(const std::string &prToUserPublicKey);
+
+    const std::string &GetPrFromUserPublicKey() const;
+
+    void SetPrFromUserPublicKey(const std::string &prFromUserPublicKey);
+
+    long GetPrTrxAmt() const;
+
+    void SetPrTrxAmt(long prTrxAmt);
+
+    const std::string &GetPrTimestamp() const;
+
+    void SetPrTimestamp(const std::string &prTimestamp);
 };
 
 

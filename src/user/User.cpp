@@ -6,7 +6,11 @@
 
 #include <utility>
 
-User::User() = default;
+User::User() {
+    prName = "";
+    prPublicKey = "";
+    prBalance = 0;
+}
 
 User::User(std::string &pName, std::string &pPublicKey, long int pBalance) {
     prName = pName;
@@ -20,7 +24,7 @@ User::User(std::string pName, std::string pPublicKey, long int pBalance) {
     prBalance = pBalance;
 }
 
-void User::GetAllInfo(std::string &pName, std::string &pPublicKey, long int& pBalance) {
+void User::GetAllInfo(std::string &pName, std::string &pPublicKey, long int &pBalance) {
     pName = prName;
     pPublicKey = prPublicKey;
     pBalance = prBalance;
@@ -34,8 +38,12 @@ void User::UpdateBalance(long int &pBalance) {
     prBalance = pBalance;
 }
 
-std::string User::GetName(){
+std::string User::GetName() {
     return prName;
+}
+
+std::string User::GetPublicKey() {
+    return prPublicKey;
 }
 
 long int User::GetBalance() {

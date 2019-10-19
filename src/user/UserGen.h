@@ -34,4 +34,5 @@ private:
     std::vector<User> users;
 
 };
+
 #endif //BLOCKCHAIN_USERGEN_H

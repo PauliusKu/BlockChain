@@ -14,10 +14,12 @@ public:
 private:
     std::chrono::time_point<h_r_clock> start;
 public:
-    Timer() :start(h_r_clock::now()){}
+    Timer() : start(h_r_clock::now()) {}
+
     inline void Reset() {
         start = h_r_clock::now();
     }
+
     [[nodiscard]] inline double GetElapsed() const {
         return double_duration(h_r_clock::now() - start).count();
     }
