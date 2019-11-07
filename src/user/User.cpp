@@ -42,10 +42,11 @@ std::string User::GetName() {
     return prName;
 }
 
-std::string User::GetPublicKey() {
+std::string User::GetPublicKey() const {
     return prPublicKey;
 }
 
 long int User::GetBalance() {
     return prBalance;
 }
+

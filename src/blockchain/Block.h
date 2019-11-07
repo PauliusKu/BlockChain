@@ -8,25 +8,33 @@
 #include <string>
 #include <vector>
 #include "../core/Context.h"
+#include "../core/Hash.h"
 #include "../trx/Trx.h"
 
 class Block {
 public:
     explicit Block(std::string &pPrevBlockHash);
 
-    void Mine();
+    void Mine(std::vector<Trx>& pTrx);
+
+    void SetHash();
 
 private:
 
-    std::string prPrevBlockHash;
-    std::string prTimeStamp;
-    std::string prMerkelRootHash;
+    std::string prBlockHash{};
+    std::string prPrevBlockHash{};
+    std::string prTimeStamp{};
+    std::string prMerkelRootHash{};
 
-    unsigned int prVersion;
+    unsigned int prVersion{};
     unsigned long prNonce{};
     unsigned int prDifficultyTarget{};
 
     std::vector<Trx> prTrx;
+
+    void SetPrTrx(std::vector<Trx>& pTrx);
+    std::string CalcMerkleRoot();
+    bool OkWithDiffTarget();
 };
 
 

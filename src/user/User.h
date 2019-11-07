@@ -19,7 +19,7 @@ public:
 
     std::string GetName();
 
-    std::string GetPublicKey();
+    std::string GetPublicKey() const;
 
     long int GetBalance();
 

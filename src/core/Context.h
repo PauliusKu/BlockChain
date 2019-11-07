@@ -9,6 +9,8 @@
 #include <string>
 
 const unsigned int VERSION = 1;
+const unsigned long NONCE = 10000000;
+const unsigned long DIFF_TARGET = 5;
 
 class Context {
 public:
@@ -23,6 +25,14 @@ public:
 
     static inline std::string GetTimestampString() {
         return std::to_string(GetTimestampMicroseconds().count());
+    }
+
+    static inline unsigned long GetMaxNonce(){
+        return NONCE;
+    }
+
+    static inline unsigned long GetDiffTarget(){
+        return DIFF_TARGET;
     }
 };
 
