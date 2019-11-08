@@ -8,6 +8,7 @@
 #include <vector>
 #include "Trx.h"
 #include "../user/User.h"
+#include "../core/Random.h"
 
 class TrxPool {
 
@@ -19,6 +20,8 @@ public:
     void ValidateTrx(const std::vector<User> &pUser);
 
     std::vector<Trx> GetTrxFromBack(unsigned int pNumOfTrxToGet);
+
+    std::vector<Trx> GetRandomTrx(unsigned int pNumOfTrxToGet);
 
     std::string GetTrxPoolInfo();
 

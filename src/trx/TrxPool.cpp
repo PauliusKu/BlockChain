@@ -41,6 +41,18 @@ bool TrxPool::IsValidTrxByUsers(const std::vector<User> &pUser) {
     return true;
 }
 
+std::vector<Trx> TrxPool::GetRandomTrx(unsigned int pNumOfTrxToGet) {
+    std::vector<Trx> trx{};
+    Random random;
+
+    for (unsigned int i = 0; i < pNumOfTrxToGet; i++){
+        trx.push_back(prTrx.at(random.RandomNum(0, prTrx.size())));
+    }
+
+    return trx;
+}
+
+
 //User TrxPool::GetUserByPublicKey(const std::string& pPublicKey, const std::vector<User> &pUser) {
 //    for (auto &obj: pUser){
 //        if (obj.GetPublicKey() == pPublicKey)

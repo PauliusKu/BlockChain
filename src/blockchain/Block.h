@@ -15,9 +15,15 @@ class Block {
 public:
     explicit Block(std::string &pPrevBlockHash);
 
+    explicit Block(std::string pPrevBlockHash);
+
     void Mine(std::vector<Trx>& pTrx);
 
     void SetHash();
+
+    bool DoesExists();
+
+    void PrintBlockInfo() const;
 
 private:
 
@@ -31,6 +37,7 @@ private:
     unsigned int prDifficultyTarget{};
 
     std::vector<Trx> prTrx;
+    bool prExists{};
 
     void SetPrTrx(std::vector<Trx>& pTrx);
     std::string CalcMerkleRoot();

@@ -3,6 +3,8 @@
 //
 
 #include "Block.h"
+#include <iostream>
+#include <utility>
 
 Block::Block(std::string &pPrevBlockHash) {
     prPrevBlockHash = pPrevBlockHash;
@@ -12,16 +14,26 @@ Block::Block(std::string &pPrevBlockHash) {
     prDifficultyTarget = Context::GetDiffTarget();
 }
 
+Block::Block(std::string pPrevBlockHash) {
+    prPrevBlockHash = std::move(pPrevBlockHash);
+    prTimeStamp = Context::GetTimestampString();
+    prVersion = Context::GetVersion();
+    prMerkelRootHash = "";
+    prDifficultyTarget = Context::GetDiffTarget();
+}
+
 void Block::Mine(std::vector<Trx>& pTrx) {
     SetPrTrx(pTrx);
+    prMerkelRootHash = CalcMerkleRoot();
 
     for (prNonce = 0; prNonce < Context::GetMaxNonce(); prNonce++){
-        if (OkWithDiffTarget()){
+        SetHash();
 
+        if (OkWithDiffTarget()){
+            prExists = true;
+            break;
         }
     }
-
-
 }
 
 void Block::SetPrTrx(std::vector<Trx> &pTrx) {
@@ -29,7 +41,7 @@ void Block::SetPrTrx(std::vector<Trx> &pTrx) {
 }
 
 void Block::SetHash() {
-    prBlockHash = CalcMerkleRoot() + prPrevBlockHash + std::to_string(prNonce);
+    prBlockHash = Hash::HashString(prMerkelRootHash + prPrevBlockHash + std::to_string(prNonce));
 }
 
 std::string Block::CalcMerkleRoot() {
@@ -57,11 +69,26 @@ bool Block::OkWithDiffTarget() {
     char diffTargSymb = '0';
 
     for (unsigned long i = 0; i < prDifficultyTarget; i++){
-        if (prBlockHash.at(i) == diffTargSymb)
+
+        if (prBlockHash.at(i) != diffTargSymb)
             return false;
     }
 
     return true;
 }
+
+bool Block::DoesExists() {
+    return prExists;
+}
+
+void Block::PrintBlockInfo() const {
+    std::cout << prVersion << " " << prDifficultyTarget << " " << prTimeStamp << " " << prNonce << " " << prExists << std::endl;
+    std::cout << prBlockHash << " " << prPrevBlockHash << " " << prMerkelRootHash << std::endl;
+    for(const auto& t : prTrx){
+        std::cout << t.GetAll() << std::endl;
+    }
+
+}
+
 
 

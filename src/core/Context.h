@@ -10,7 +10,7 @@
 
 const unsigned int VERSION = 1;
 const unsigned long NONCE = 10000000;
-const unsigned long DIFF_TARGET = 5;
+const unsigned long DIFF_TARGET = 4;
 
 class Context {
 public:

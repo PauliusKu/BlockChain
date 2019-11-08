@@ -9,7 +9,20 @@
 #include <vector>
 
 class Blockchain {
+
+public:
+    std::string GetGenBlock();
+
+    bool AddBlock(Block &block);
+
+    void PrintBlockChainInfo();
+
+private:
     std::vector<Block> prBlockChain;
+
+    std::string prGenBlock;
+
+    bool IsValid(Block &block);
 };
 
 

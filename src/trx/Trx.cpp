@@ -4,7 +4,7 @@
 
 #include "Trx.h"
 
-std::string Trx::GetAll() {
+std::string Trx::GetAll() const {
     return std::to_string(prTrxNum) + " " + prToUserPublicKey + " " + prFromUserPublicKey + " " +
            std::to_string(prTrxAmt) + " " + prTimestamp + " " + prTrxHash;
 }

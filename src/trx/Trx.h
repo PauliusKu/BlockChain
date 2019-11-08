@@ -10,7 +10,7 @@
 
 class Trx {
 public:
-    std::string GetAll();
+    std::string GetAll() const;
 
 private:
     unsigned long prTrxNum;

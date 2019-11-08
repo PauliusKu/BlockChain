@@ -4,6 +4,8 @@
 #include "core/Context.h"
 #include "core/Hash.h"
 #include "trx/TrxPool.h"
+#include "blockchain/Block.h"
+#include "blockchain/Blockchain.h"
 
 int main() {
 
@@ -26,11 +28,22 @@ int main() {
 
     trxPool.AddManyTrx(trxGen.GetTrxList());
     std::cout << trxPool.GetTrxPoolInfo() << std::endl;
-    std::vector<Trx> trxList = trxPool.GetTrxFromBack(100);
+    std::vector<Trx> trxList = trxPool.GetRandomTrx(100);
 
 
     for (auto &item: trxList)
         std::cout << "Trx: " << item.GetAll() << std::endl;
+
+    Blockchain blockchain;
+
+    Block block(blockchain.GetGenBlock());
+    block.Mine(trxList);
+
+    if (block.DoesExists()){
+        blockchain.AddBlock(block);
+        blockchain.PrintBlockChainInfo();
+    }
+
 
     std::cout << "Hello, World!" << std::endl;
     return 0;
