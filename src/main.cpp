@@ -1,17 +1,13 @@
 #include <iostream>
+
 #include "user/UserGen.h"
 #include "trx/TrxGen.h"
-#include "core/Context.h"
-#include "core/Hash.h"
+#include "core/Timer.h"
 #include "trx/TrxPool.h"
 #include "blockchain/Block.h"
 #include "blockchain/Blockchain.h"
 
 int main() {
-
-//    std::cout << std::to_string(Context::millisecondsGetTimestamp().count()) << std::endl;
-//    std::cout << std::to_string(Context::millisecondsGetTimestamp().count()) << std::endl;
-
     UserGen userGen;
 
     userGen.SetRulesDflt();
@@ -22,29 +18,45 @@ int main() {
         std::cout << "Rez: " << item.GetAllInfo() << std::endl;
 
     TrxGen trxGen(usersList);
-    trxGen.GenerateManyTrxRand(1000);
+    trxGen.GenerateManyTrxRand(100);
 
     TrxPool trxPool;
 
     trxPool.AddManyTrx(trxGen.GetTrxList());
     std::cout << trxPool.GetTrxPoolInfo() << std::endl;
-    std::vector<Trx> trxList = trxPool.GetRandomTrx(100);
 
-
-    for (auto &item: trxList)
-        std::cout << "Trx: " << item.GetAll() << std::endl;
-
+    Block finalBlock;
+    double finalBlockGenDuration = 9999999;
     Blockchain blockchain;
 
-    Block block(blockchain.GetGenBlock());
-    block.Mine(trxList);
+    Timer performance = Timer();
 
-    if (block.DoesExists()){
-        blockchain.AddBlock(block);
+    for (unsigned int i = 0; i < 50; i++){
+        Timer timer = Timer();
+        std::vector<Trx> trxList = trxPool.GetRandomTrx(10);
+
+        Block block(blockchain.GetGenBlock());
+        block.Mine(trxList);
+
+        double elapsedTime = timer.GetElapsed();
+        std::cout << "Elapsed time " << i << ": " << elapsedTime << std::endl;
+
+        if (elapsedTime < finalBlockGenDuration){
+            finalBlockGenDuration = elapsedTime;
+            finalBlock = block;
+        }
+     }
+
+
+    std::cout << "Perf: " << performance.GetElapsed() << std::endl;
+
+    if (finalBlock.DoesExists()){
+        std::cout << "----------------------------------------------" << std::endl;
+        std::cout << "fastest is " << finalBlockGenDuration << std::endl;
+        blockchain.AddBlock(finalBlock);
         blockchain.PrintBlockChainInfo();
     }
 
-
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "End of the program!" << std::endl;
     return 0;
 }

@@ -90,5 +90,7 @@ void Block::PrintBlockInfo() const {
 
 }
 
+Block::Block() = default;
+
 
 

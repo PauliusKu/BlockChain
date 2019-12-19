@@ -13,6 +13,8 @@
 
 class Block {
 public:
+    explicit Block();
+
     explicit Block(std::string &pPrevBlockHash);
 
     explicit Block(std::string pPrevBlockHash);

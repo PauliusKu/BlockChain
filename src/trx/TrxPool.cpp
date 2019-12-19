@@ -20,7 +20,7 @@ void TrxPool::AddManyTrx(const std::vector<Trx> &pTrx) {
 }
 
 std::string TrxPool::GetTrxPoolInfo() {
-    return std::to_string(prTrx.size());
+    return "trx size: " + std::to_string(prTrx.size());
 }
 
 void TrxPool::ValidateTrx(const std::vector<User> &pUser) {
@@ -46,7 +46,7 @@ std::vector<Trx> TrxPool::GetRandomTrx(unsigned int pNumOfTrxToGet) {
     Random random;
 
     for (unsigned int i = 0; i < pNumOfTrxToGet; i++){
-        trx.push_back(prTrx.at(random.RandomNum(0, prTrx.size())));
+        trx.push_back(prTrx.at(random.RandomNum(0, prTrx.size() - 1)));
     }
 
     return trx;
