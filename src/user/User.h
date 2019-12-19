@@ -21,7 +21,7 @@ public:
 
     std::string GetPublicKey() const;
 
-    long int GetBalance();
+    long int GetBalance() const;
 
     std::string GetAllInfo();
 

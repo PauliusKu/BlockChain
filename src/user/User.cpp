@@ -46,7 +46,7 @@ std::string User::GetPublicKey() const {
     return prPublicKey;
 }
 
-long int User::GetBalance() {
+long int User::GetBalance() const {
     return prBalance;
 }
 

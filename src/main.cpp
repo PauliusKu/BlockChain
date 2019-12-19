@@ -15,7 +15,7 @@ int main() {
     std::vector<User> usersList = userGen.GetUsers();
 
     for (auto &item: usersList)
-        std::cout << "Rez: " << item.GetAllInfo() << std::endl;
+        std::cout << "Users: " << item.GetAllInfo() << std::endl;
 
     TrxGen trxGen(usersList);
     trxGen.GenerateManyTrxRand(100);
@@ -24,6 +24,7 @@ int main() {
 
     trxPool.AddManyTrx(trxGen.GetTrxList());
     std::cout << trxPool.GetTrxPoolInfo() << std::endl;
+    trxPool.ValidateAndRemoveTrx(usersList);
 
     Block finalBlock;
     double finalBlockGenDuration = 9999999;

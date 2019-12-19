@@ -15,6 +15,7 @@ unsigned long Trx::GetPrTrxNum() const {
 
 void Trx::SetPrTrxNum(unsigned long pTrxNum) {
     Trx::prTrxNum = pTrxNum;
+    CalcPrTrxHash();
 }
 
 const std::string &Trx::GetPrToUserPublicKey() const {
@@ -23,6 +24,7 @@ const std::string &Trx::GetPrToUserPublicKey() const {
 
 void Trx::SetPrToUserPublicKey(const std::string &pToUserPublicKey) {
     Trx::prToUserPublicKey = pToUserPublicKey;
+    CalcPrTrxHash();
 }
 
 const std::string &Trx::GetPrFromUserPublicKey() const {
@@ -31,6 +33,7 @@ const std::string &Trx::GetPrFromUserPublicKey() const {
 
 void Trx::SetPrFromUserPublicKey(const std::string &pFromUserPublicKey) {
     Trx::prFromUserPublicKey = pFromUserPublicKey;
+    CalcPrTrxHash();
 }
 
 long Trx::GetPrTrxAmt() const {
@@ -39,6 +42,7 @@ long Trx::GetPrTrxAmt() const {
 
 void Trx::SetPrTrxAmt(long pTrxAmt) {
     Trx::prTrxAmt = pTrxAmt;
+    CalcPrTrxHash();
 }
 
 const std::string &Trx::GetPrTimestamp() const {
@@ -47,6 +51,7 @@ const std::string &Trx::GetPrTimestamp() const {
 
 void Trx::SetPrTimestamp(const std::string &pTimestamp) {
     Trx::prTimestamp = pTimestamp;
+    CalcPrTrxHash();
 }
 
 const std::string &Trx::GetPrTrxHash() const {

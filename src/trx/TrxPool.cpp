@@ -23,23 +23,40 @@ std::string TrxPool::GetTrxPoolInfo() {
     return "trx size: " + std::to_string(prTrx.size());
 }
 
-void TrxPool::ValidateTrx(const std::vector<User> &pUser) {
+void TrxPool::ValidateAndRemoveTrx(const std::vector<User> &pUsers) {
 
-    for (auto &obj: prTrx){
-        if (!IsValidTrxByHash())
+    std::vector<Trx> remList;
+
+    for (auto &trx: prTrx){
+        if (IsValidTrxByHash(trx))
             std::cout << "Not valid hash" << std::endl;
-        if (!IsValidTrxByUsers(pUser))
-            std::cout << "Not valid user" << std::endl;
+        if (!IsValidTrxByUsers(trx, pUsers)){
+            std::cout << "Not valid users: " << trx.GetPrFromUserPublicKey() << " " << trx.GetPrToUserPublicKey() << " " << trx.GetPrTrxAmt() << std::endl;
+            remList.push_back(trx);
+        }
     }
+
+    RemoveTrx(remList);
 }
 
-bool TrxPool::IsValidTrxByHash() {
-    return true;
+bool TrxPool::IsValidTrxByHash(Trx &trx) {
+    return Hash::HashString(trx.GetAll()) == trx.GetPrTrxHash();
+
 }
 
-bool TrxPool::IsValidTrxByUsers(const std::vector<User> &pUser) {
-    return true;
+bool TrxPool::IsValidTrxByUsers(const Trx &trx, const std::vector<User> &pUsers) {
+    int valid = 0;
+
+    for(const User &user: pUsers){
+        if (user.GetPublicKey() == trx.GetPrFromUserPublicKey() && user.GetBalance() >= trx.GetPrTrxAmt())
+            valid++;
+        else if (user.GetPublicKey() == trx.GetPrToUserPublicKey())
+            valid++;
+    }
+
+    return valid == 2;
 }
+
 
 std::vector<Trx> TrxPool::GetRandomTrx(unsigned int pNumOfTrxToGet) {
     std::vector<Trx> trx{};
@@ -50,6 +67,10 @@ std::vector<Trx> TrxPool::GetRandomTrx(unsigned int pNumOfTrxToGet) {
     }
 
     return trx;
+}
+
+void TrxPool::RemoveTrx(const std::vector<Trx> trx) {
+
 }
 
 

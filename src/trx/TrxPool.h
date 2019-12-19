@@ -8,6 +8,7 @@
 #include <vector>
 #include "Trx.h"
 #include "../user/User.h"
+#include "../core/Hash.h"
 #include "../core/Random.h"
 
 class TrxPool {
@@ -17,7 +18,7 @@ public:
 
     void AddManyTrx(const std::vector<Trx> &pTrx);
 
-    void ValidateTrx(const std::vector<User> &pUser);
+    void ValidateAndRemoveTrx(const std::vector<User> &pUsers);
 
     std::vector<Trx> GetTrxFromBack(unsigned int pNumOfTrxToGet);
 
@@ -29,9 +30,11 @@ private:
     std::vector<Trx> prTrx;
     std::vector<Trx> prRemovedTrx;
 
-    bool IsValidTrxByHash();
+    bool IsValidTrxByHash(Trx &trx);
 
-    bool IsValidTrxByUsers(const std::vector<User> &pUser);
+    bool IsValidTrxByUsers(const Trx &trx, const std::vector<User> &pUsers);
+
+    void RemoveTrx(std::vector<Trx> trx);
 
     //User GetUserByPublicKey(const std::string& pPublicKey, const std::vector<User> &pUser);
 };
