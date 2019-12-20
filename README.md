@@ -2,7 +2,7 @@
 ## About
 [Requirements](https://github.com/blockchain-group/Blockchain-technologijos/blob/master/pratybos/2uzduotis-Blockchain.md)
 ### Requirements fulfilled
-- creates users with random acount setup
+- creates users with random account setup
 - generates random transactions betweeen users
 - puts random transactions into transaction pool
 - validates transactions amounts
