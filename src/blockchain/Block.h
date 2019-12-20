@@ -27,6 +27,12 @@ public:
 
     void PrintBlockInfo() const;
 
+    std::string GetBlockHash();
+
+    void SetPrevBlockHash(std::string pPrevBlockHash);
+
+    std::vector<Trx> GetBlockTrx();
+
 private:
 
     std::string prBlockHash{};

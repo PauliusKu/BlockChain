@@ -73,10 +73,6 @@ void TrxPool::RemoveTrx(const std::vector<Trx> trx) {
 
 }
 
-
-//User TrxPool::GetUserByPublicKey(const std::string& pPublicKey, const std::vector<User> &pUser) {
-//    for (auto &obj: pUser){
-//        if (obj.GetPublicKey() == pPublicKey)
-//            return obj;
-//    }
-//}
+std::vector<Trx> TrxPool::GetAllTrx() {
+    return prTrx;
+}

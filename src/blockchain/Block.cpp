@@ -82,12 +82,24 @@ bool Block::DoesExists() {
 }
 
 void Block::PrintBlockInfo() const {
-    std::cout << prVersion << " " << prDifficultyTarget << " " << prTimeStamp << " " << prNonce << " " << prExists << std::endl;
-    std::cout << prBlockHash << " " << prPrevBlockHash << " " << prMerkelRootHash << std::endl;
+    std::cout << "Version: " << prVersion << " DiffTarget: " << prDifficultyTarget << " TimeStamp: " << prTimeStamp << " Nonce: " << prNonce << " Exists: " << prExists << std::endl;
+    std::cout << "BlockHash: " << prBlockHash << " PrevBlockHash: " << prPrevBlockHash << " MerkelRootHash:" << prMerkelRootHash << std::endl;
     for(const auto& t : prTrx){
-        std::cout << t.GetAll() << std::endl;
+        std::cout << t.GetAllNice() << std::endl;
     }
 
+}
+
+std::string Block::GetBlockHash() {
+    return prBlockHash;
+}
+
+void Block::SetPrevBlockHash(std::string pPrevBlockHash) {
+    prPrevBlockHash = pPrevBlockHash;
+}
+
+std::vector<Trx> Block::GetBlockTrx() {
+    return prTrx;
 }
 
 Block::Block() = default;

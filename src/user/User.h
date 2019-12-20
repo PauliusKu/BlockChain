@@ -27,6 +27,8 @@ public:
 
     void UpdateBalance(long int &pBalance);
 
+    void UpdateBalance(long int pBalance);
+
 private:
     std::string prName;
     std::string prPublicKey;

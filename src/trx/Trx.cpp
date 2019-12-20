@@ -9,6 +9,10 @@ std::string Trx::GetAll() const {
            std::to_string(prTrxAmt) + " " + prTimestamp + " " + prTrxHash;
 }
 
+std::string Trx::GetAllNice() const {
+    return "Trx Info: trxNum toUserPublicKey fromUserPublicKey trxAmt timestamp trxHash \n" + GetAll() ; //+ prTrxHash;
+}
+
 unsigned long Trx::GetPrTrxNum() const {
     return prTrxNum;
 }

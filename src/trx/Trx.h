@@ -11,6 +11,7 @@
 class Trx {
 public:
     std::string GetAll() const;
+    std::string GetAllNice() const;
 
 private:
     unsigned long prTrxNum;

@@ -24,6 +24,8 @@ public:
 
     std::vector<Trx> GetRandomTrx(unsigned int pNumOfTrxToGet);
 
+    std::vector<Trx> GetAllTrx();
+
     std::string GetTrxPoolInfo();
 
 private:

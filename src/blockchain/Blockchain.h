@@ -6,6 +6,7 @@
 #define BLOCKCHAIN_BLOCKCHAIN_H
 
 #include "Block.h"
+#include "../user/User.h"
 #include <vector>
 
 class Blockchain {
@@ -16,6 +17,8 @@ public:
     bool AddBlock(Block &block);
 
     void PrintBlockChainInfo();
+
+    void UpdateUsers(std::vector<User> &users);
 
 private:
     std::vector<Block> prBlockChain;

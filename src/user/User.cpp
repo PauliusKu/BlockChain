@@ -50,3 +50,7 @@ long int User::GetBalance() const {
     return prBalance;
 }
 
+void User::UpdateBalance(long int pBalance) {
+    prBalance = pBalance;
+}
+

@@ -7,7 +7,7 @@
 UserGen::UserGen() = default;
 
 void UserGen::SetRulesDflt() {
-    params.prNumOfClientsToGen = 1000;
+    params.prNumOfClientsToGen = 100;
     params.prMinNameLength = 10;
     params.prMaxNameLength = 20;
     params.prPublicKeyLength = 48;
